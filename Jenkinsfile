@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        OPENSHIFT_SERVER = 'https://api.ocp412.networknuts.lab:6443'
+        OPENSHIFT_SERVER = 'https://api.ocp4.example.com:6443'
         OPENSHIFT_TOKEN = credentials('openshift-service-account-token')
         OPENSHIFT_NAMESPACE = 'devops-pipeline'
         GIT_REPO_URL = 'https://github.com/arytmw/jenkins-openshift-pipeline.git'
@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     // Log in to OpenShift cluster
-                    sh "oc login --token=${OPENSHIFT_TOKEN} --server=${OPENSHIFT_SERVER} --insecure-skip-tls-verify"
+                    sh "oc login --token=${OPENSHIFT_TOKEN} --server=${OPENSHIFT_SERVER}"
                 }
             }
         }
